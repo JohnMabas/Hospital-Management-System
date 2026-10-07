@@ -1,0 +1,109 @@
+/* Google Fonts are loaded via next/font in layout.tsx — no @import needed */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 20 184 166;
+    --primary-dark: 13 148 136;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-neutral-dark antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-600;
+  }
+}
+
+@layer components {
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden bg-gray-200 rounded;
+  }
+
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-card;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  /* Form field label — used across profile, booking, and auth forms */
+  .label {
+    @apply block text-xs font-medium text-gray-600 mb-1.5;
+  }
+
+  /* Input base style */
+  .input {
+    @apply w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-white
+           focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400
+           transition-all duration-200 placeholder-gray-400;
+  }
+
+  /* Select base style */
+  .select {
+    @apply input cursor-pointer;
+  }
+}
+
+@layer utilities {
+  /* Scroll progress bar */
+  .scroll-progress {
+    @apply fixed top-0 left-0 right-0 h-1 bg-primary-500 z-[100] origin-left;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

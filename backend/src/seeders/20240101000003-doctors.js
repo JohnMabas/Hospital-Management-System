@@ -1,0 +1,161 @@
+'use strict';
+
+const doctorUserIds = [
+  'b1b2c3d4-e5f6-7890-abcd-ef1234567891',
+  'b2b2c3d4-e5f6-7890-abcd-ef1234567892',
+  'b3b2c3d4-e5f6-7890-abcd-ef1234567893',
+  'b4b2c3d4-e5f6-7890-abcd-ef1234567894',
+  'b5b2c3d4-e5f6-7890-abcd-ef1234567895',
+  'b6b2c3d4-e5f6-7890-abcd-ef1234567896',
+  'b7b2c3d4-e5f6-7890-abcd-ef1234567897',
+  'b8b2c3d4-e5f6-7890-abcd-ef1234567898',
+];
+
+const departmentIds = {
+  generalMedicine: 'd1b2c3d4-e5f6-7890-abcd-ef1234567801',
+  pediatrics: 'd2b2c3d4-e5f6-7890-abcd-ef1234567802',
+  obgyn: 'd3b2c3d4-e5f6-7890-abcd-ef1234567803',
+  surgery: 'd4b2c3d4-e5f6-7890-abcd-ef1234567804',
+  cardiology: 'd5b2c3d4-e5f6-7890-abcd-ef1234567805',
+  dental: 'd6b2c3d4-e5f6-7890-abcd-ef1234567806',
+  laboratory: 'd7b2c3d4-e5f6-7890-abcd-ef1234567807',
+  radiology: 'd8b2c3d4-e5f6-7890-abcd-ef1234567808',
+};
+
+const doctorIds = [
+  'e1b2c3d4-e5f6-7890-abcd-ef1234567811',
+  'e2b2c3d4-e5f6-7890-abcd-ef1234567812',
+  'e3b2c3d4-e5f6-7890-abcd-ef1234567813',
+  'e4b2c3d4-e5f6-7890-abcd-ef1234567814',
+  'e5b2c3d4-e5f6-7890-abcd-ef1234567815',
+  'e6b2c3d4-e5f6-7890-abcd-ef1234567816',
+  'e7b2c3d4-e5f6-7890-abcd-ef1234567817',
+  'e8b2c3d4-e5f6-7890-abcd-ef1234567818',
+];
+
+module.exports = {
+  async up(queryInterface) {
+    const now = new Date();
+
+    await queryInterface.bulkInsert('Doctors', [
+      {
+        id: doctorIds[0],
+        userId: doctorUserIds[0],
+        departmentId: departmentIds.generalMedicine,
+        specialization: 'Internal Medicine & Primary Care',
+        bio: 'Dr. Chukwuemeka Okonkwo is a highly experienced internal medicine physician with over 15 years of practice. He graduated from the University of Jos School of Medicine and completed his postgraduate training at the Lagos University Teaching Hospital. He has a special interest in diabetes management, hypertension, and preventive medicine.',
+        yearsOfExperience: 15,
+        licenseNumber: 'MDCN-2009-001234',
+        consultationFee: 8000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[1],
+        userId: doctorUserIds[1],
+        departmentId: departmentIds.pediatrics,
+        specialization: 'Paediatrics & Child Health',
+        bio: 'Dr. Adaeze Nwachukwu is a consultant paediatrician passionate about child welfare. She holds a Fellowship from the West African College of Physicians and has extensive experience managing childhood infections, malnutrition, and developmental disorders common in northern Nigeria.',
+        yearsOfExperience: 10,
+        licenseNumber: 'MDCN-2014-002345',
+        consultationFee: 7500.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[2],
+        userId: doctorUserIds[2],
+        departmentId: departmentIds.obgyn,
+        specialization: 'Obstetrics & Gynaecology',
+        bio: 'Dr. Babatunde Adeyemi is a consultant obstetrician and gynaecologist with 12 years of experience. He specializes in high-risk pregnancies, laparoscopic surgery, and management of gynaecological cancers. He is a Fellow of the West African College of Surgeons.',
+        yearsOfExperience: 12,
+        licenseNumber: 'MDCN-2012-003456',
+        consultationFee: 10000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[3],
+        userId: doctorUserIds[3],
+        departmentId: departmentIds.surgery,
+        specialization: 'General & Laparoscopic Surgery',
+        bio: 'Dr. Ngozi Eze is a skilled general surgeon specializing in minimally invasive procedures. She trained at the University of Ibadan and furthered her skills in laparoscopic surgery in India. She has successfully performed over 2,000 surgical procedures.',
+        yearsOfExperience: 14,
+        licenseNumber: 'MDCN-2010-004567',
+        consultationFee: 12000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[4],
+        userId: doctorUserIds[4],
+        departmentId: departmentIds.cardiology,
+        specialization: 'Cardiology & Cardiovascular Medicine',
+        bio: 'Dr. Emeka Ikechukwu is a cardiologist with specialized training in interventional cardiology. He completed advanced cardiac training in the United Kingdom and has expertise in managing complex heart conditions including coronary artery disease and heart failure.',
+        yearsOfExperience: 18,
+        licenseNumber: 'MDCN-2006-005678',
+        consultationFee: 15000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[5],
+        userId: doctorUserIds[5],
+        departmentId: departmentIds.dental,
+        specialization: 'Oral & Maxillofacial Surgery',
+        bio: 'Dr. Fatima Abdullahi is a dentist and oral surgeon with expertise in complex extractions, dental implants, and orthodontics. She graduated from Ahmadu Bello University and is committed to providing pain-free dental experiences for all patients.',
+        yearsOfExperience: 8,
+        licenseNumber: 'MDCN-2016-006789',
+        consultationFee: 5000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[6],
+        userId: doctorUserIds[6],
+        departmentId: departmentIds.generalMedicine,
+        specialization: 'Family Medicine & HIV Management',
+        bio: 'Dr. Oluwaseun Fasanya is a family medicine specialist with a focus on HIV/AIDS management, tuberculosis, and chronic disease care. He is passionate about community health and has worked extensively with underserved populations in Plateau State.',
+        yearsOfExperience: 9,
+        licenseNumber: 'MDCN-2015-007890',
+        consultationFee: 6500.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: doctorIds[7],
+        userId: doctorUserIds[7],
+        departmentId: departmentIds.pediatrics,
+        specialization: 'Neonatology & Paediatric Emergency',
+        bio: 'Dr. Amaka Obiora is a consultant neonatologist and paediatric emergency physician. She has special expertise in caring for premature babies and managing paediatric emergencies. She trained at the University of Nigeria, Nsukka, and the Alder Hey Childrens Hospital, Liverpool.',
+        yearsOfExperience: 11,
+        licenseNumber: 'MDCN-2013-008901',
+        consultationFee: 9000.00,
+        avatarUrl: null,
+        isAvailable: true,
+        createdAt: now,
+        updatedAt: now,
+      },
+    ]);
+  },
+
+  async down(queryInterface) {
+    await queryInterface.bulkDelete('Doctors', null, {});
+  },
+};
+
+module.exports.doctorIds = doctorIds;
