@@ -4,7 +4,18 @@ const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
 
-const { register, login, refresh, logout, getMe, changePassword, forgotPassword } = require('../controllers/authController');
+const {
+  register,
+  login,
+  refresh,
+  logout,
+  getMe,
+  changePassword,
+  verifyEmail,
+  resendVerification,
+  forgotPassword,
+  resetPassword,
+} = require('../controllers/authController');
 const { authenticate } = require('../middlewares/auth');
 const { validate } = require('../middlewares/validate');
 const rateLimit = require('express-rate-limit');
@@ -67,11 +78,46 @@ router.put(
 );
 
 router.post(
+  '/verify-email',
+  authLimiter,
+  [
+    body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
+    body('otp').matches(/^\d{6}$/).withMessage('Verification code must be 6 digits'),
+  ],
+  validate,
+  verifyEmail
+);
+
+router.post(
+  '/resend-verification',
+  authLimiter,
+  [body('email').isEmail().normalizeEmail().withMessage('Valid email is required')],
+  validate,
+  resendVerification
+);
+
+router.post(
   '/forgot-password',
   authLimiter,
   [body('email').isEmail().normalizeEmail().withMessage('Valid email is required')],
   validate,
   forgotPassword
+);
+
+router.post(
+  '/reset-password',
+  authLimiter,
+  [
+    body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
+    body('otp').matches(/^\d{6}$/).withMessage('Reset code must be 6 digits'),
+    body('password')
+      .isLength({ min: 8 })
+      .withMessage('Password must be at least 8 characters')
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)/)
+      .withMessage('Password must contain at least one letter and one number'),
+  ],
+  validate,
+  resetPassword
 );
 
 module.exports = router;

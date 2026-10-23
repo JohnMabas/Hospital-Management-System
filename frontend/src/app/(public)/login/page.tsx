@@ -36,6 +36,12 @@ export default function LoginPage() {
       const dashboard = `/dashboard/${user?.role || 'patient'}`;
       router.push(redirect || dashboard);
     } catch (err: any) {
+      const code = err?.response?.data?.code;
+      if (code === 'EMAIL_NOT_VERIFIED') {
+        toast.error('Please verify your email before signing in.');
+        router.push(`/verify-email?email=${encodeURIComponent(data.email)}`);
+        return;
+      }
       toast.error(err?.response?.data?.message || 'Login failed. Please check your credentials.');
     }
   };

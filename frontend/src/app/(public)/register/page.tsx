@@ -47,8 +47,8 @@ export default function RegisterPage() {
     try {
       const { confirmPassword, ...rest } = data;
       await registerUser({ ...rest, phone: rest.phone || undefined });
-      toast.success('Account created! Welcome to CareBridge.');
-      router.push('/dashboard/patient');
+      toast.success('Account created! Check your email for the verification code.');
+      router.push(`/verify-email?email=${encodeURIComponent(data.email)}`);
     } catch (err: any) {
       toast.error(err?.response?.data?.message || 'Registration failed. Please try again.');
     }

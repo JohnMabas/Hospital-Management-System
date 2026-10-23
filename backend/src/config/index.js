@@ -28,6 +28,18 @@ module.exports = {
     rounds: 12,
   },
 
+  email: {
+    brevoApiKey: process.env.BREVO_API_KEY || '',
+    senderEmail: process.env.BREVO_SENDER_EMAIL || 'no-reply@carebridge.com',
+    senderName: process.env.BREVO_SENDER_NAME || 'CareBridge Specialist Hospital',
+    replyToEmail: process.env.BREVO_REPLY_TO || process.env.BREVO_SENDER_EMAIL || '',
+    otpSecret: process.env.OTP_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_otp_secret',
+    otpLength: 6,
+    otpExpiresMinutes: parseInt(process.env.OTP_EXPIRES_MINUTES) || 10,
+    maxAttempts: parseInt(process.env.OTP_MAX_ATTEMPTS) || 5,
+    resendCooldownSeconds: parseInt(process.env.OTP_RESEND_COOLDOWN_SECONDS) || 60,
+  },
+
   rateLimit: {
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100,

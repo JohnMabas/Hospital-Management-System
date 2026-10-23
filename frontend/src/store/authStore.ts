@@ -62,9 +62,7 @@ export const useAuthStore = create<AuthStore>()(
       register: async (data) => {
         set({ isLoading: true });
         try {
-          const res = await api.post('/auth/register', data);
-          const { user, accessToken } = res.data.data;
-          get().setAuth(user, accessToken);
+          await api.post('/auth/register', data);
         } finally {
           set({ isLoading: false });
         }

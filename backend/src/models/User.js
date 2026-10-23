@@ -14,6 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     toJSON() {
       const values = { ...this.get() };
       delete values.passwordHash;
+      delete values.emailVerificationOtpHash;
+      delete values.emailVerificationOtpExpiresAt;
+      delete values.emailVerificationAttempts;
+      delete values.emailVerificationLastSentAt;
+      delete values.passwordResetOtpHash;
+      delete values.passwordResetOtpExpiresAt;
+      delete values.passwordResetAttempts;
+      delete values.passwordResetLastSentAt;
       return values;
     }
   }
@@ -69,6 +77,45 @@ module.exports = (sequelize, DataTypes) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      isEmailVerified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      emailVerificationOtpHash: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      emailVerificationOtpExpiresAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      emailVerificationAttempts: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      emailVerificationLastSentAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      passwordResetOtpHash: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      passwordResetOtpExpiresAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      passwordResetAttempts: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      passwordResetLastSentAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
       lastLoginAt: {
         type: DataTypes.DATE,

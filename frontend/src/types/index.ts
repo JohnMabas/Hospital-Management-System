@@ -9,6 +9,7 @@ export interface User {
   phone?: string;
   role: UserRole;
   isActive: boolean;
+  isEmailVerified: boolean;
   lastLoginAt?: string;
   createdAt: string;
   updatedAt: string;
